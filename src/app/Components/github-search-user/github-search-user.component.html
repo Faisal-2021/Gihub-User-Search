@@ -1,0 +1,34 @@
+<div>
+    <form 
+        (submit)="searchUser()"
+        class=" flex mt-5 justify-center " 
+    >
+        
+        <input 
+            [(ngModel)]="githubUserQuery" 
+            type="search" 
+            name="user" 
+            placeholder="Enter github's user name" 
+            class=" w-64 h-8 sm:h-10 outline-none focus:border-b-2 focus:placeholder:placeholder-sky-300 focus:border-sky-200 px-2 text-gray-700 mr-2 rounded-sm"
+        />
+        <input 
+            type="submit" 
+            value="Search"
+            class=" bg-gradient-to-r from-sky-400 to-sky-200 h-8 sm:h-10 outline-none px-5 text-white font-medium rounded-full hover:border-b-4 border-blue-400/50"  
+        />
+    </form>
+    
+    <div 
+    
+        *ngIf="githubProfile"
+        class=" border-t-2 m-2 p-10 mt-10 border-sky-200"
+    >
+        <div>
+            <app-github-profile  [githubProfile]="githubProfile"></app-github-profile>
+        </div>
+        <div class="border border-sky-400 rounded shadow-xl shadow-black/40" >
+            <p class=" font-medium text-lg text-white bg-blue-400 h-10 p-2">Github repositories of {{githubProfile.name}} </p>
+            <app-github-repos  [githubRepos]="githubProfile"></app-github-repos>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#ffffff" type = "pacman" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class=" grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+
+<div *ngFor="let repo of allRepo | paginate:{itemsPerPage:10,currentPage:page,totalItems:totalRepos}  ">
+    <div  class=" border-2 m-2 p-5 hover:shadow-md shadow-blue-400 hover:border-blue-300/70 rounded">
+        <p class=" text-blue-500 font-medium text-lg mb-2">{{repo.name}} </p>
+        <p class=" text-gray-800">{{repo.description}}</p>
+        <p  *ngFor="let l of repo.language"
+            class="bg-blue-400 inline-flex text-white text-xs font-medium shadow-md shadow-blue-300/75 py-0.5 px-1.5 rounded mt-1 mr-1.5"
+        >
+            {{l}}
+        </p>
+    </div>
+</div>
+</div>
+<pagination-controls (pageChange)="page=$event; allRepo=[]; lang=[]; getRepos() " class="flex justify-center"></pagination-controls>
